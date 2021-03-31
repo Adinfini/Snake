@@ -1,2 +1,2 @@
 # Snake
-simple Snake game in Java with JFram
+simple Snake game in Java with JFrame
