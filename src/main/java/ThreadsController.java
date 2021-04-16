@@ -42,13 +42,42 @@ public class ThreadsController extends Thread {
             moveInterne(directionSnake);
             checkCollision();
             moveExterne();
+            deleteTail();
 
 
         }
     }
 
-    private void moveExterne() {
+    //Refreshes the tail of the Snake, by removing the superfluous data in positions arrayList
+    //and refreshing the display of the things that is removed
+    private void deleteTail() {
+        int cmpt = sizeSnake;
+        for(int i = positions.size()-1; i>=0;i--) {
+            if (cmpt == 0) {
+                Tupel t = positions.get(i);
+                Squares.get(t.getY()).get(t.getx()).lightMeup(2);
+            } else {
+                cmpt--;
+            }
+        }
 
+        cmpt = sizeSnake;
+        for(int i = positions.size()-1; i>=0;i--){
+            if(cmpt==0){
+                positions.remove(i);
+            }else {
+                cmpt--;
+            }
+        }
+    }
+
+    //Refreshes the squares that needs to appear on the Frame
+    private void moveExterne() {
+        for(Tupel t : positions) {
+            int y = t.getx();
+            int x = t.getY();
+            Squares.get(x).get(y).lightMeup(0);
+        }
     }
 
     //Checks if the Snake bites itself or is eating the food
