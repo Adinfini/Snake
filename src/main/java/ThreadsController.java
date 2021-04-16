@@ -43,8 +43,7 @@ public class ThreadsController extends Thread {
             checkCollision();
             moveExterne();
             deleteTail();
-
-
+            pauser();
         }
     }
 
@@ -108,9 +107,10 @@ public class ThreadsController extends Thread {
         p = new Tupel(ranX,ranY);
 
         for(int i = 0; i<=positions.size()-1; i++) {
-            if(p.getx()==positions.get(i).getx() && p.getY()==positions.get(i).getY()){
+            if(p.getY()==positions.get(i).getx() && p.getx()==positions.get(i).getY()){
                 ranX = 0 + (int)(Math.random()*19);
                 ranY = 0 + (int)(Math.random()*19);
+                p = new Tupel(ranX,ranY);
                 i=0;
             }
         }
