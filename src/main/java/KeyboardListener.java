@@ -2,7 +2,11 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
 public class KeyboardListener extends KeyAdapter {
-
+    //1:right
+    //2:left
+    //3:top
+    //4:bottom
+    //any other key pressed will go in default
     public void keyPressed(KeyEvent e) {
         switch(e.getKeyCode()){
             case 39:
