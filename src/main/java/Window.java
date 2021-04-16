@@ -35,10 +35,13 @@ public class Window extends JFrame {
 
          //initial position of the snake
          //TODO::
+         Tupel position = new Tupel(10, 10);
          //passing this value to the Controller
          //TODO:
+         ThreadsController thread = new ThreadsController(position);
          //start the game now;
          //TODO:
+         thread.start();
 
          //Links the Window to the KeyboardListenner
          //TODO:
