@@ -1,5 +1,6 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.KeyListener;
 import java.util.ArrayList;
 
 public class Window extends JFrame {
@@ -45,6 +46,7 @@ public class Window extends JFrame {
 
          //Links the Window to the KeyboardListenner
          //TODO:
+         this.addKeyListener((KeyListener)new KeyboardListener());
      }
 
 }

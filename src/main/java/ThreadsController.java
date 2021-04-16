@@ -40,7 +40,37 @@ public class ThreadsController extends Thread {
     public void run() {
         while(true){
             moveInterne(directionSnake);
+            checkCollision();
 
+
+        }
+    }
+
+    //Checks if the Snake bites itself or is eating the food
+    private void checkCollision() {
+        Tupel postCritique = positions.get(positions.size()-1);
+        for(int i = 0; i<=positions.size()-2;i++){
+            boolean biteItSelf = postCritique.getx() == positions.get(i).getx() && postCritique.getY() ==positions.get(i).getY();
+            if(biteItSelf){
+                stopTheGame();
+            }
+        }
+    }
+
+    //stops the Game
+    private void stopTheGame() {
+        System.out.printf("Collision \n");
+        while(true){
+            pauser();
+        }
+    }
+
+    //delay the between move of the Snake
+    private void pauser() {
+        try {
+            sleep(speed);
+        }catch (InterruptedException e) {
+            e.printStackTrace();
         }
     }
 
