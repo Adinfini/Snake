@@ -41,9 +41,14 @@ public class ThreadsController extends Thread {
         while(true){
             moveInterne(directionSnake);
             checkCollision();
+            moveExterne();
 
 
         }
+    }
+
+    private void moveExterne() {
+
     }
 
     //Checks if the Snake bites itself or is eating the food
@@ -55,6 +60,32 @@ public class ThreadsController extends Thread {
                 stopTheGame();
             }
         }
+
+        boolean eatingFood = postCritique.getx() == foodPosition.getx() && postCritique.getY() == foodPosition.getY();
+        if(eatingFood) {
+            System.out.printf("Yummy!!!");
+            sizeSnake = sizeSnake+1;
+            foodPosition = getValueNotInSnake();
+            spawnFood(foodPosition);
+        }
+    }
+
+    //return a position not occupied by the Snake
+    private Tupel getValueNotInSnake() {
+        Tupel p;
+        int ranX = 0 + (int)(Math.random()*19);
+        int ranY = 0 + (int)(Math.random()*19);
+
+        p = new Tupel(ranX,ranY);
+
+        for(int i = 0; i<=positions.size()-1; i++) {
+            if(p.getx()==positions.get(i).getx() && p.getY()==positions.get(i).getY()){
+                ranX = 0 + (int)(Math.random()*19);
+                ranY = 0 + (int)(Math.random()*19);
+                i=0;
+            }
+        }
+        return p;
     }
 
     //stops the Game
@@ -65,7 +96,7 @@ public class ThreadsController extends Thread {
         }
     }
 
-    //delay the between move of the Snake
+    //delay between each move of the Snake
     private void pauser() {
         try {
             sleep(speed);
